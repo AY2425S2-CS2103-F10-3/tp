@@ -9,51 +9,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Bryon Kaan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bryonk.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/bryonk)]
+[[portfolio](team/bryonk.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Roy T
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rt0118.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/RT0118)]
+[[portfolio](team/rt0118.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Dextor Goh
+
+<img src="images/zerolegacy.png" width="200px">
+
+[[github](http://github.com/zerolegacy] [[portfolio](team/zerolegacy.md)]
+
+* Role: Developer
+* Responsibilities: Data
