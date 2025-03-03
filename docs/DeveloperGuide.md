@@ -262,27 +262,53 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a private tuition teacher
+* has a need to manage a significant number of student/parent contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provide fast access to student/parent contact details as well as their learning progress (Subjects or Modules taken, Year of study and upcoming lesson timings), optimized for users who prefer a CLI.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​           | I want to …​                                                                                                      | So that I can…​                                                              |
+|----------|-------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `***`    | First time user   | Add new student profiles with their basic details such as contact number and address                              | I can store the information in one place and find them when I need to        | 
+| `***`    | First time user   | Add new student profiles with their advanced details such as student's subjects, grades, lesson timings           | I can store the information in one place and find them when I need to        | 
+| `***`    | First time user   | Delete student profiles for graduating students                                                                   | I don't waste time looking at old data.                                      | 
+| `***`    | Beginner user     | View a student's complete profile (name, contact details, address) in one screen                                  | I have all the necessary information when needed                             | 
+| `**`     | Potential user    | View the sample data                                                                                              | I can visualise how the app will look when it is populated with data.        | 
+| `**`     | New user          | Have a quick tutorial of the main features                                                                        | I can understand how to use the app effectively.                             | 
+| `**`     | First time user   | Clear all sample data                                                                                             | I can begin populating the app with new data.                                | 
+| `**`     | Beginner user     | Search for a student's details                                                                                    | I don't waste time looking through all the users.                            | 
+| `**`     | Beginner user     | View all lessons schedules for a specific day                                                                     | I can view the lessons for the day.                                          | 
+| `**`     | Familiar user     | Add modules to a student                                                                                          | I can track the new modules a student is taking.                             | 
+| `**`     | Familiar user     | Delete modules from a student                                                                                     | I can track the modules a student is dropping.                               | 
+| `**`     | Familiar user     | Sort lessons by upcoming date                                                                                     | I can see what lessons are coming up.                                        | 
+| `*`      | Familiar user     | Add user profile pictures                                                                                         | I can recognise the student when I see them                                  | 
+| `**`     | Familiar user     | Filter by day of the week                                                                                         | I can plan my weekly schedule effectively                                    | 
+| `**`     | Familiar user     | indicate the relationship of a parent to a student (e.g. "Mother", "Brother", "Guardian")                         | I can know what is the connection between the parent and student             | 
+| `**`     | Familiar user     | Filter by module                                                                                                  | I can plan lesson plans efficiently                                          | 
+| `*`      | Familiar user     | track student module progress                                                                                     | I can plan my next lesson better                                             | 
+| `**`     | Familiar user     | archive student details                                                                                           | I can track students taking leave of absence and coming back at a later time | 
+| `**`     | Familiar user     | edit command shortcuts                                                                                            | I can type commands in a way I prefer so it will be faster                   | 
+| `**`     | Familiar user     | autofill address suggestions when students live at the same location (e.g. same HDB block, different unit number) | I can add student addresses easier                                           | 
+| `**`     | Familiar user     | see public holidays marked in the calendar                                                                        | I do not schedule lessons during holidays                                    | 
+| `**`     | Familiar user     | autofill module details                                                                                           | I can efficiently add modules to multiple students                           | 
+| `**`     | Tutor             | search for students based on postal code                                                                          | I can better plan my travel route                                            | 
+| `**`     | Tutor             | identify conflicting schedules                                                                                    | I can avoid overlapping lessons                                              | 
+| `**`     | Tutor             | edit multiple scheduled lessons at once                                                                           | I can manage bulk schedule changes more efficiently                          | 
+| `**`     | Tutor             | look at my teaching schedules in different views (daily, weekly, monthly)                                         | I can plan ahead effectively                                                 | 
+| `**`     | Tutor             | indicate time slots as "travelling time" or "lunch time"                                                          | I can avoid overlapping scheduling lessons during other misc timings         | 
+| `**`     | Tutor             | tag students with labels ("P1", "Sec3", etc)                                                                      | I can better plan my teaching content                                        | 
+| `**`     | Tutor             | tag students with location labels ("Clementi Area", "Bishan Area", etc.)                                          | I can better organise my teaching route                                      | 
+| `*`      | Tutor             | export student's contact details to my phone's contact list                                                       | I can contact them without using TutionBook                                  | 
+|----------|-------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
 
 *{More to be added}*
 
@@ -290,28 +316,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a user**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User types in contact they intend to add
+2. TuitionBook checks the input data
+3. TuitionBook adds the contact
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Input field(s) are incorrect
 
-  Use case ends.
+    * 2a1. TuitionBook prints the error message
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+Use case ends
 
 *{More to be added}*
 
