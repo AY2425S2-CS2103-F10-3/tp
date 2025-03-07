@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/zerolegacy.png" width="200px">
 
-[[github](http://github.com/zerolegacy] [[portfolio](team/zerolegacy.md)]
+[[github](http://github.com/zerolegacy)] [[portfolio](team/zerolegacy.md)]
 
 * Role: Developer
 * Responsibilities: Data
