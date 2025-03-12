@@ -16,7 +16,7 @@ public class LessonTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidModuleName_throwsIllegalArgumentException() {
         String invalidModuleName = "";
         LocalDateTime validDateTime = LocalDateTime.of(2025, 12, 12, 12, 0);
         assertThrows(IllegalArgumentException.class, () -> new Lesson(invalidModuleName, validDateTime));
