@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -20,7 +23,11 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_MISSING_ARGUMENTS = "Function is missing arguments with separator.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final int LESSON_MODULE = 0;
+    public static final int LESSON_DATE = 1;
+    public static final int LESSON_ARGUMENTS = 2;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -120,5 +127,39 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String details} into a {@code Lesson}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code details} is invalid.
+     */
+    public static Lesson parseLesson(String details) throws ParseException {
+        requireNonNull(details);
+        String[] detailsArr = details.trim().split(";");
+        if (detailsArr.length != LESSON_ARGUMENTS) {
+            throw new ParseException(MESSAGE_MISSING_ARGUMENTS);
+        }
+        if (!Lesson.isValidModuleName(detailsArr[LESSON_MODULE])) {
+            throw new ParseException(Lesson.MODULE_MESSAGE_CONSTRAINT);
+        }
+        if (!Lesson.isValidLessonDate(detailsArr[LESSON_DATE])) {
+            throw new ParseException(Lesson.LESSON_DATETIME_MESSAGE_CONSTRAINT);
+        }
+        return new Lesson(detailsArr[LESSON_MODULE],
+                LocalDateTime.from(Lesson.LESSON_DATETIME_FORMAT.parse(detailsArr[LESSON_DATE])));
+    }
+
+    /**
+     * Parses {@code Collection<String> details} into a {@code ArrayList<Lesson>}.
+     */
+    public static ArrayList<Lesson> parseLessons(Collection<String> detailsList) throws ParseException {
+        requireNonNull(detailsList);
+        final ArrayList<Lesson> lessons = new ArrayList<>();
+        for (String details : detailsList) {
+            lessons.add(parseLesson(details));
+        }
+        return lessons;
     }
 }

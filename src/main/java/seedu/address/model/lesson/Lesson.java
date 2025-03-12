@@ -58,6 +58,21 @@ public class Lesson {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Lesson)) {
+            return false;
+        }
+
+        Lesson otherLesson = (Lesson) other;
+        return module.equals(otherLesson.module) && date.equals(otherLesson.date);
+    }
+
     public String toString() {
         return String.format("%s [%s]", this.module, this.date);
     }
