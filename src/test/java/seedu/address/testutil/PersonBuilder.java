@@ -26,7 +26,7 @@ public class PersonBuilder {
     public static final LocalDateTime DEFAULT_LESSON_DATETIME =
             LocalDateTime.of(2025, 12, 12, 12, 0);
     public static final Lesson DEFAULT_LESSON =
-            new Lesson("E-Maths", DEFAULT_LESSON_DATETIME);
+            new Lesson("Elementary Maths", DEFAULT_LESSON_DATETIME);
 
     private Name name;
     private Phone phone;
