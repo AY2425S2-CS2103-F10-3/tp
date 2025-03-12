@@ -1,5 +1,8 @@
 package seedu.address.model.lesson;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -26,6 +29,9 @@ public class Lesson {
      * @param date A valid lesson datetime
      */
     public Lesson(String module, LocalDateTime date) {
+        requireNonNull(module);
+        requireNonNull(date);
+        checkArgument(isValidModuleName(module), MODULE_MESSAGE_CONSTRAINT);
         this.module = module;
         this.date = date;
     }
