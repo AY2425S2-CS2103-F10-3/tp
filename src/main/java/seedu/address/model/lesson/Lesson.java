@@ -31,7 +31,6 @@ public class Lesson {
     public Lesson(String module, LocalDateTime date) {
         requireNonNull(module);
         requireNonNull(date);
-        checkArgument(isValidModuleName(module), MODULE_MESSAGE_CONSTRAINT);
         this.module = module;
         this.date = date;
     }
