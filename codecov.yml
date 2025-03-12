@@ -1,0 +1,10 @@
+coverage:
+  status:
+    project:
+      default:
+        ignore:
+          - "src/main/java/seedu/address/storage/SampleDataUtil.java"
+    patch:
+      default:
+        ignore:
+          - "src/main/java/seedu/address/storage/SampleDataUtil.java" # Ignore sample data files
