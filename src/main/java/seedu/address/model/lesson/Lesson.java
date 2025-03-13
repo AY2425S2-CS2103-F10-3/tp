@@ -75,8 +75,8 @@ public class Lesson {
         return module.equals(otherLesson.module) && date.equals(otherLesson.date);
     }
 
+    @Override
     public String toString() {
-        return String.format("Module: %s [%s]"
-                , this.module, this.date.format(DISPLAY_DATETIME_FORMAT));
+        return String.format("%s | %s", this.module, this.date.format(DISPLAY_DATETIME_FORMAT));
     }
 }
