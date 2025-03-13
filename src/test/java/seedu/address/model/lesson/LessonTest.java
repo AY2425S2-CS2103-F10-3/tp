@@ -65,4 +65,14 @@ public class LessonTest {
         // different values -> returns false
         assertFalse(lesson.equals(new Lesson("Different Module", validDateTime)));
     }
+
+    @Test
+    public void toStringTest() {
+        LocalDateTime validDateTime = LocalDateTime.of(2025, 3, 12, 18, 0);
+        Lesson lesson = new Lesson("Valid Module", validDateTime);
+
+        assertTrue(lesson.toString().equals("Valid Module | 12 Mar 2025, 18:00:00"));
+
+        assertFalse(lesson.toString().equals("Valid Module | 2025-03-12T18:00:00"));
+    }
 }
