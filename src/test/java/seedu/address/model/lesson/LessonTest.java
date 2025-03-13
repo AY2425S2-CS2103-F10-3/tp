@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 public class LessonTest {
@@ -41,5 +43,26 @@ public class LessonTest {
 
         // valid date string
         assertTrue(Lesson.isValidLessonDate("2024-12-12T12:00:00"));
+    }
+
+    @Test
+    public void equals() {
+        LocalDateTime validDateTime = LocalDateTime.of(2025, 3, 12, 18, 0);
+        Lesson lesson = new Lesson("Valid Module", validDateTime);
+
+        // same values -> returns true
+        assertTrue(lesson.equals(new Lesson("Valid Module", validDateTime)));
+
+        // same object -> returns true
+        assertTrue(lesson.equals(lesson));
+
+        // null -> returns false
+        assertFalse(lesson.equals(null));
+
+        // different types -> returns false
+        assertFalse(lesson.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(lesson.equals(new Lesson("Different Module", validDateTime)));
     }
 }
