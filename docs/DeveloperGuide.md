@@ -348,6 +348,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. TuitionBook shows an error message
 
     Use case ends
+  
+
+* 2b. Contact name already exists. 
+  * 2b1. TuitionBook prints the error message for duplicate user.
+    
+    Use case ends.
 
 
 * 3a. Error occurs when saving to file. 
