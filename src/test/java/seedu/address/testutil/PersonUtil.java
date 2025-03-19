@@ -2,10 +2,13 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -18,11 +21,26 @@ import seedu.address.model.tag.Tag;
  */
 public class PersonUtil {
 
+    public static final DateTimeFormatter LESSON_DATETIME_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    public static final DateTimeFormatter DISPLAY_LESSON_FORMAT =
+            DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm:ss");
     /**
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    }
+
+    /**
+     * Converts the displayed lesson format to the input command format.
+     */
+    public static String convertLessonFormat(String lesson) {
+        String[] parts = lesson.split(" \\| ");
+        String moduleName = parts[0].trim();
+        String dateTimeStr = parts[1].trim();
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, DISPLAY_LESSON_FORMAT);
+        return moduleName + ";" + dateTime.format(LESSON_DATETIME_FORMAT) + " ";
     }
 
     /**
@@ -36,6 +54,9 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        );
+        person.getLessons().stream().forEach(
+            s -> sb.append(PREFIX_LESSON + convertLessonFormat(s.toString()))
         );
         return sb.toString();
     }

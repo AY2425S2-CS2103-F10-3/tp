@@ -18,6 +18,8 @@ public class Lesson {
     public static final String MODULE_NAME_VALIDATION_REGEX = "\\p{Alnum}+( \\p{Alnum}+)*";
     public static final DateTimeFormatter LESSON_DATETIME_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    public static final DateTimeFormatter DISPLAY_DATETIME_FORMAT =
+            DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm:ss");
 
     private final String module;
     private final LocalDateTime date;
@@ -58,7 +60,23 @@ public class Lesson {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Lesson)) {
+            return false;
+        }
+
+        Lesson otherLesson = (Lesson) other;
+        return module.equals(otherLesson.module) && date.equals(otherLesson.date);
+    }
+
+    @Override
     public String toString() {
-        return String.format("%s [%s]", this.module, this.date);
+        return String.format("%s | %s", this.module, this.date.format(DISPLAY_DATETIME_FORMAT));
     }
 }
