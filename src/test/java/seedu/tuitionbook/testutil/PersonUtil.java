@@ -6,8 +6,8 @@ import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.tuitionbook.model.lesson.Lesson.LESSON_DATETIME_FORMAT;
 import static seedu.tuitionbook.model.lesson.Lesson.DISPLAY_DATETIME_FORMAT;
+import static seedu.tuitionbook.model.lesson.Lesson.LESSON_DATETIME_FORMAT;
 
 import java.time.LocalDateTime;
 import java.util.Set;
