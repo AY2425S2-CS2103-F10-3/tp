@@ -316,7 +316,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a user**
+**Use case: View all contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. TuitionBook shows a list of contacts.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  * 2a1. TuitionBook shows an error message.
+  
+    Use case ends.
+
+**Use case: Add a contact**
 
 **MSS**
 
@@ -324,25 +340,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TuitionBook checks the input data
 3. TuitionBook adds the contact
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. Input field(s) are incorrect
+  * 2a1. TuitionBook shows an error message
 
-    * 2a1. TuitionBook prints the error message
+    Use case ends
+  
 
-Use case ends
+* 2b. Contact name already exists. 
+  * 2b1. TuitionBook prints the error message for duplicate user.
+    
+    Use case ends.
 
-*{More to be added}*
+
+* 3a. Error occurs when saving to file. 
+  * 3a1. TuitionBook shows an error message.
+  
+    Use case ends.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1. User types in contact index to delete.
+2. TuitionBook checks the contact index.
+3. TuitionBook deletes the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Contact index is invalid.
+    * 2a1. TuitionBook shows an error message
+
+      Use case ends
+
+
+* 3a. Error occurs when saving to file.
+    * 3a1. TuitionBook shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
