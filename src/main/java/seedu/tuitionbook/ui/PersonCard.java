@@ -1,5 +1,6 @@
 package seedu.tuitionbook.ui;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -58,6 +59,11 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         lesson.setText(person.getLessons().stream()
+                .filter(lesson -> {
+                    LocalDateTime lessonDateTime = LocalDateTime.parse(lesson.getDatetimeAsString()
+                            , lesson.LESSON_DATETIME_FORMAT);
+                    return lessonDateTime.isAfter(LocalDateTime.now());
+                })
                 .limit(MAX_LESSONS_TO_DISPLAY)
                 .map(lesson -> lesson.toString())
                 .reduce((a, b) -> a + "\n" + b)
