@@ -77,14 +77,14 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LESSON_NAME;LESSON_DATETIME…​ [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [l/LESSON_NAME;LESSON_DATETIME]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and lessons (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Elementary Math;2025-03-12T18:00:00`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Elementary Math;2025-03-12T18:00:00 t/Sec4`
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Elementary Math;2025-03-12T18:00:00 l/Biology;2025-03-13T15:00:00 t/Sec4`
 
@@ -193,7 +193,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LESSON_NAME;LESSON_DATETIME…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 l/Elementary Math;2025-03-12T18:00:00 t/Sec4`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [l/LESSON_NAME;LESSON_DATETIME]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 l/Elementary Math;2025-03-12T18:00:00 t/Sec4`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
