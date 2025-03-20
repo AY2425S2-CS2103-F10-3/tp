@@ -6,9 +6,10 @@ import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.tuitionbook.model.lesson.Lesson.DISPLAY_DATETIME_FORMAT;
+import static seedu.tuitionbook.model.lesson.Lesson.LESSON_DATETIME_FORMAT;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.tuitionbook.logic.commands.AddCommand;
@@ -21,10 +22,6 @@ import seedu.tuitionbook.model.tag.Tag;
  */
 public class PersonUtil {
 
-    public static final DateTimeFormatter LESSON_DATETIME_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-    public static final DateTimeFormatter DISPLAY_LESSON_FORMAT =
-            DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm:ss");
     /**
      * Returns an add command string for adding the {@code person}.
      */
@@ -39,7 +36,7 @@ public class PersonUtil {
         String[] parts = lesson.split(" \\| ");
         String moduleName = parts[0].trim();
         String dateTimeStr = parts[1].trim();
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, DISPLAY_LESSON_FORMAT);
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, DISPLAY_DATETIME_FORMAT);
         return moduleName + ";" + dateTime.format(LESSON_DATETIME_FORMAT) + " ";
     }
 

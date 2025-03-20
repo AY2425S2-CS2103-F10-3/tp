@@ -19,16 +19,16 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox alignment="BOTTOM_RIGHT" fx:id="helpMessageContainer">
         <children>
-          <Label fx:id="helpMessage" text="Label">
+          <Label fx:id="helpMessage" text="Label" style="-fx-font-family: 'monospace';" >
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
             <HBox.margin>
-              <Insets left="5.0" />
+              <Insets right="5.0" />
             </HBox.margin>
           </Button>
         </children>

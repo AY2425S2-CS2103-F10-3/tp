@@ -15,8 +15,21 @@ import seedu.tuitionbook.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2425s2-cs2103-f10-3.github.io/tp/";
+    public static final String HELP_MESSAGE = "TuitionBookPro Commands Help\n"
+            + "---------------------\n"
+            + "Commands:\n"
+            + "  add NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] [l/LESSON]...         Add a new contact\n"
+            + "  delete INDEX                                                     Delete contact at index\n"
+            + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...   Edit contact\n"
+            + "   Note: Editing of lessons is currently not supported\n"
+            + "  list                                                             List all contacts\n"
+            + "  find KEYWORD [MORE_KEYWORDS]                                     Find contacts by keyword\n"
+            + "  clear                                                            Clear all contacts\n"
+            + "  exit                                                             Exit the application\n"
+            + "---------------------\n"
+            + "You may also enter commands without any parameters to see examples.\n\n"
+            + USERGUIDE_URL + "\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
