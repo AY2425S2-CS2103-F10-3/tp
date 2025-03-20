@@ -17,7 +17,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "User Guide URL is currently unavailable.";
     public static final String HELP_MESSAGE = "TuitionBookPro Commands Help\n"
-            + "---------------------\n" 
+            + "---------------------\n"
             + "Commands:\n"
             + "  add NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] [l/LESSON]...         Add a new contact\n"
             + "  delete INDEX                                                     Delete contact at index\n"
