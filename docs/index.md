@@ -9,7 +9,7 @@ title: TuitionBook
 
 ![Ui](images/Ui.png)
 
-**TuitionBook is a streamlined, fast, and efficient way to access key student and parent information.
+**TuitionBook** is a streamlined, fast, and efficient way to access key student and parent information.
 Designed with simplicity and speed in mind, this solution is perfect for private tuition teachers who prefer a
 no-frills, text-based approach to managing student data.
 
