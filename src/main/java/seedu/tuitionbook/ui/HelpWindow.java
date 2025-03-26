@@ -16,7 +16,7 @@ import seedu.tuitionbook.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103-f10-3.github.io/tp/";
-    public static final String HELP_MESSAGE = "TuitionBookPro Commands Help\n"
+    public static final String HELP_MESSAGE = "TuitionBook Commands Help\n"
             + "---------------------\n"
             + "Commands:\n"
             + "  add NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] [l/LESSON]...         Add a new contact\n"
