@@ -21,7 +21,7 @@ public class CommandResult {
 
     private final String lessonString;
 
-    /** Help information should be shown to the user. */
+    /** List of lessons should be shown to the user. */
     private final boolean showLesson;
 
     /**

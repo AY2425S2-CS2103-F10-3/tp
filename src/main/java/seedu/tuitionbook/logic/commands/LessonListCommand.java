@@ -12,7 +12,7 @@ import seedu.tuitionbook.model.Model;
 import seedu.tuitionbook.model.person.Person;
 
 /**
- * Format full help instructions for every command for display.
+ * Lists all lessons for the Person specified by the given index.
  */
 public class LessonListCommand extends Command {
 
