@@ -33,10 +33,14 @@ public class LessonDeleteCommand extends Command {
             + PREFIX_LESSON + "LESSON\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_LESSON + "Emath;2025-12-01T12:00:00";
 
-    public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lesson: %1$s";
+    public static final String MESSAGE_DELETE_LESSON_SUCCESS = "User Lessons Updated: %1$s";
     private final Index targetIndex;
     private final List<Lesson> lessonsToDelete;
 
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param lessonsToDelete list of lessons that will be removed from person
+     */
     public LessonDeleteCommand(Index index, List<Lesson> lessonsToDelete) {
         requireAllNonNull(index, lessonsToDelete);
         this.targetIndex = index;
@@ -61,7 +65,7 @@ public class LessonDeleteCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, Messages.format(personToEdit)));
+        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, Messages.format(editedPerson)));
     }
 
     /**
@@ -89,13 +93,15 @@ public class LessonDeleteCommand extends Command {
             return false;
         }
 
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return targetIndex.equals(otherDeleteCommand.targetIndex)
+                && lessonsToDelete.equals(otherDeleteCommand.lessonsToDelete);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
+                .add("lessonsToDelete", lessonsToDelete)
                 .toString();
     }
 
