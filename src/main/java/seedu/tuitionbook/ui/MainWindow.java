@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private LessonWindow lessonWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        lessonWindow = new LessonWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -163,6 +165,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Opens the lessons window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleLesson(String lessonString) {
+        if (!lessonWindow.isShowing()) {
+            lessonWindow.show(lessonString);
+        } else {
+            lessonWindow.show(lessonString);
+            lessonWindow.focus();
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowLesson()) {
+                handleLesson(commandResult.getLessonString());
             }
 
             return commandResult;
