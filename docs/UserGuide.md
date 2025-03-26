@@ -93,6 +93,10 @@ Examples:
 
 Shows a list of all persons in TuitionBook.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    TuitionBook will only show upcoming lessons (if any), and will display a default message if there is no lessons to display.
+</div>
+
 Format: `list`
 
 ### Editing a person : `edit`
