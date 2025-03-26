@@ -113,6 +113,8 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("lessonString", lessonString)
+                .add("showLesson", showLesson)
                 .toString();
     }
 

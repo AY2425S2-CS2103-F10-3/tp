@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.tuitionbook.commons.core.index.Index;
+import seedu.tuitionbook.commons.util.ToStringBuilder;
 import seedu.tuitionbook.logic.Messages;
 import seedu.tuitionbook.logic.commands.exceptions.CommandException;
 import seedu.tuitionbook.model.Model;
@@ -24,7 +25,7 @@ public class LessonListCommand extends Command {
 
     public static final String LIST_LESSONS_MESSAGE = "Listing all lessons for ";
 
-    private static final String NO_LESSONS_TO_DISPLAY = "No lessons found";
+    public static final String NO_LESSONS_TO_DISPLAY = "No lessons found";
 
     private final Index targetIndex;
 
@@ -48,5 +49,27 @@ public class LessonListCommand extends Command {
                 .map(lesson -> lesson.toString())
                 .reduce((a, b) -> a + "\n" + b)
                 .orElse(NO_LESSONS_TO_DISPLAY));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof LessonListCommand)) {
+            return false;
+        }
+
+        LessonListCommand otherLessonListCommand = (LessonListCommand) other;
+        return targetIndex.equals(otherLessonListCommand.targetIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
     }
 }
