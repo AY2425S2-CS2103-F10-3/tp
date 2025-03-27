@@ -73,6 +73,7 @@ public class LessonDeleteCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, List<Lesson> updatedLessons) {
         assert personToEdit != null;
+        assert updatedLessons != null;
 
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
