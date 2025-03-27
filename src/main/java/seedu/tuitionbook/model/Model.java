@@ -1,10 +1,12 @@
 package seedu.tuitionbook.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.tuitionbook.commons.core.GuiSettings;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
 
 /**
@@ -84,4 +86,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a lesson with the same timing exists in the address book.
+     */
+    boolean hasLesson(List<Lesson> lessons);
+
 }

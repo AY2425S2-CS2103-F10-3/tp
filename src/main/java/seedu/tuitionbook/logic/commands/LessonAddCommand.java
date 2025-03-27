@@ -36,7 +36,8 @@ public class LessonAddCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_LESSON + "Math;2025-12-31T12:00:00";
 
     public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson: %1$s";
-    //public static final String MESSAGE_DUPLICATE_LESSON = "There is already a lesson with that timeslot";
+    public static final String MESSAGE_DUPLICATE_LESSON =
+            "Error: There is already a student with the same lesson timeslot";
 
     private final Index index;
     private final List<Lesson> lessonsToAdd;
@@ -48,6 +49,7 @@ public class LessonAddCommand extends Command {
     public LessonAddCommand(Index index, List<Lesson> lessonsToAdd) {
         requireNonNull(index);
         requireNonNull(lessonsToAdd);
+        assert !lessonsToAdd.isEmpty();
 
         this.index = index;
         this.lessonsToAdd = lessonsToAdd;
@@ -62,11 +64,16 @@ public class LessonAddCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
         List<Lesson> updatedLessons = Stream.concat(personToEdit.getLessons().stream(),
                 lessonsToAdd.stream())
                 .toList();
         Person editedPerson = createEditedPerson(personToEdit, updatedLessons);
+
+        if (model.hasLesson(lessonsToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

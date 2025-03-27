@@ -64,6 +64,8 @@ public class PersonCard extends UiPart<Region> {
                             lesson.LESSON_DATETIME_FORMAT);
                     return lessonDateTime.isAfter(LocalDateTime.now());
                 })
+                .sorted(Comparator.comparing(lesson -> LocalDateTime.parse(lesson.getDatetimeAsString(),
+                        lesson.LESSON_DATETIME_FORMAT)))
                 .limit(MAX_LESSONS_TO_DISPLAY)
                 .map(lesson -> lesson.toString())
                 .reduce((a, b) -> a + "\n" + b)

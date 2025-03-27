@@ -10,6 +10,7 @@ import static seedu.tuitionbook.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import seedu.tuitionbook.model.AddressBook;
 import seedu.tuitionbook.model.Model;
 import seedu.tuitionbook.model.ReadOnlyAddressBook;
 import seedu.tuitionbook.model.ReadOnlyUserPrefs;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
 import seedu.tuitionbook.testutil.PersonBuilder;
 
@@ -51,6 +53,17 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateLesson_throwsCommandException() {
+        Person alice = new PersonBuilder().withName("Alice").build();
+        Person bob = new PersonBuilder().withName("Bob").build();
+        AddCommand addAliceCommand = new AddCommand(alice);
+        ModelStub modelStub = new ModelStubWithPerson(bob);
+
+        assertThrows(AssertionError.class,
+                LessonAddCommand.MESSAGE_DUPLICATE_LESSON, () -> addAliceCommand.execute(modelStub));
     }
 
     @Test
@@ -139,6 +152,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasLesson(List<Lesson> lessons) {
+            throw new AssertionError("Error: There is already a student with the same lesson timeslot");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -193,6 +211,12 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public boolean hasLesson(List<Lesson> lessons) {
+            requireNonNull(lessons);
+            return false;
         }
 
         @Override

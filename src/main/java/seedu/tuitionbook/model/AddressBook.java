@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.tuitionbook.commons.util.ToStringBuilder;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
 import seedu.tuitionbook.model.person.UniquePersonList;
 
@@ -92,6 +93,28 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns true if a lesson with the same timingexists in the address book.
+     */
+    public boolean hasLesson(List<Lesson> lessons) {
+        requireNonNull(lessons);
+        ObservableList<Person> personList = getPersonList();
+        List<String> lessonsToCheck = lessons.stream()
+                .map(lesson -> lesson.getDatetimeAsString())
+                .toList();
+        for (Person person : personList) {
+            List<Lesson> personLessons = person.getLessons();
+
+            for (Lesson lesson : personLessons) {
+                String exisitingLessonTime = lesson.getDatetimeAsString();
+                if (lessonsToCheck.contains(exisitingLessonTime)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     //// util methods

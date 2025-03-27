@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tuitionbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tuitionbook.commons.core.GuiSettings;
 import seedu.tuitionbook.commons.core.LogsCenter;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
 
 /**
@@ -91,6 +93,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasLesson(List<Lesson> lessons) {
+        requireNonNull(lessons);
+        return addressBook.hasLesson(lessons);
     }
 
     @Override
