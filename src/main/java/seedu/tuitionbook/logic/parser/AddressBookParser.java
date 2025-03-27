@@ -17,6 +17,8 @@ import seedu.tuitionbook.logic.commands.ExitCommand;
 import seedu.tuitionbook.logic.commands.FindCommand;
 import seedu.tuitionbook.logic.commands.HelpCommand;
 import seedu.tuitionbook.logic.commands.LessonAddCommand;
+import seedu.tuitionbook.logic.commands.LessonDeleteCommand;
+import seedu.tuitionbook.logic.commands.LessonListCommand;
 import seedu.tuitionbook.logic.commands.ListCommand;
 import seedu.tuitionbook.logic.parser.exceptions.ParseException;
 
@@ -71,7 +73,13 @@ public class AddressBookParser {
 
         case LessonAddCommand.COMMAND_WORD:
             return new LessonAddCommandParser().parse(arguments);
-        //test
+            
+        case LessonDeleteCommand.COMMAND_WORD:
+            return new LessonDeleteCommandParser().parse(arguments);
+            
+        case LessonListCommand.COMMAND_WORD:
+            return new LessonListCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 

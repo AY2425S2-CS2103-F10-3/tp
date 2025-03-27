@@ -1,0 +1,13 @@
+#lessonContainer {
+    -fx-background-color: #303030; /* Dark grey background */
+    -fx-border-color: #505050;    /* Slightly lighter grey border */
+    -fx-border-width: 2px;
+    -fx-padding: 4 12 4 12;
+}
+
+#lessonLabel {
+    -fx-font-size: 16px;
+    -fx-font-style: "Segoe UI";
+    -fx-padding: 10px;
+    -fx-text-fill: #ffffff;
+}
