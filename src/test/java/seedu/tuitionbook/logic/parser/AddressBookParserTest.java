@@ -21,6 +21,7 @@ import seedu.tuitionbook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.tuitionbook.logic.commands.ExitCommand;
 import seedu.tuitionbook.logic.commands.FindCommand;
 import seedu.tuitionbook.logic.commands.HelpCommand;
+import seedu.tuitionbook.logic.commands.LessonAddCommand;
 import seedu.tuitionbook.logic.commands.LessonDeleteCommand;
 import seedu.tuitionbook.logic.commands.LessonListCommand;
 import seedu.tuitionbook.logic.commands.ListCommand;
@@ -98,6 +99,15 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_lessonAdd() throws Exception {
+        String commandString = LessonAddCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " "
+                + "l/Elementary Mathematics;2025-12-12T12:00:00";
+        assertTrue(parser.parseCommand(commandString) instanceof LessonAddCommand);
+    }
+
+    @Test
     public void parseCommand_lessonDelete() throws Exception {
         String commandString = LessonDeleteCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
@@ -113,6 +123,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }
