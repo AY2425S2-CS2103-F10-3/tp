@@ -105,6 +105,7 @@ public class AddressBookParserTest {
                 + " "
                 + "l/Elementary Mathematics;2025-12-12T12:00:00";
         assertTrue(parser.parseCommand(commandString) instanceof LessonAddCommand);
+    }
 
     @Test
     public void parseCommand_lessonDelete() throws Exception {
