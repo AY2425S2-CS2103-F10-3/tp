@@ -21,6 +21,7 @@ import seedu.tuitionbook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.tuitionbook.logic.commands.ExitCommand;
 import seedu.tuitionbook.logic.commands.FindCommand;
 import seedu.tuitionbook.logic.commands.HelpCommand;
+import seedu.tuitionbook.logic.commands.LessonDeleteCommand;
 import seedu.tuitionbook.logic.commands.LessonListCommand;
 import seedu.tuitionbook.logic.commands.ListCommand;
 import seedu.tuitionbook.logic.parser.exceptions.ParseException;
@@ -94,6 +95,14 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_lessonDelete() throws Exception {
+        String commandString = LessonDeleteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + "l/Elementary Mathematics;2025-12-12T12:00:00";
+        assertTrue(parser.parseCommand(commandString) instanceof LessonDeleteCommand);
     }
 
     @Test
