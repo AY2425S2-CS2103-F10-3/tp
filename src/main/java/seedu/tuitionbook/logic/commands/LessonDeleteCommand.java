@@ -59,7 +59,7 @@ public class LessonDeleteCommand extends Command {
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         List<Lesson> updatedLessons = personToEdit.getLessons()
                 .stream()
-                .dropWhile(lessonsToDelete::contains)
+                .filter(lesson -> !lessonsToDelete.contains(lesson))
                 .toList();
         Person editedPerson = createEditedPerson(personToEdit, updatedLessons);
 
