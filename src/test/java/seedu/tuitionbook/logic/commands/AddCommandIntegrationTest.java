@@ -4,6 +4,8 @@ import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandFail
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tuitionbook.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +30,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Person validPerson = new PersonBuilder().withLessons(List.of()).build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);

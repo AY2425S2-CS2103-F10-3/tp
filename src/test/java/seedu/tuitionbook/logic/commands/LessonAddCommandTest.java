@@ -3,7 +3,6 @@ package seedu.tuitionbook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tuitionbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -24,7 +23,6 @@ import seedu.tuitionbook.model.ModelManager;
 import seedu.tuitionbook.model.UserPrefs;
 import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
-import seedu.tuitionbook.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for LessonAddCommand.
@@ -66,13 +64,29 @@ public class LessonAddCommandTest {
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        List<Lesson> lessonsToAdd = List.of();
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        LessonAddCommand lessonAddCommand = new LessonAddCommand(outOfBoundIndex, lessonsToAdd);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(lessonAddCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicateLesson_failure() {
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        List<Lesson> lessonsToAdd = List.of(EXAMPLE_LESSON);
+        LessonAddCommand lessonAddCommand = new LessonAddCommand(INDEX_FIRST_PERSON, lessonsToAdd);
+
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), lessonsToAdd);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()),
+                editedPerson);
+
+        assertCommandFailure(lessonAddCommand, expectedModel, LessonAddCommand.MESSAGE_DUPLICATE_LESSON);
     }
 
     @Test

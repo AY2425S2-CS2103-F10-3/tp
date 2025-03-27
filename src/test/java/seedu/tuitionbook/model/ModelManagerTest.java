@@ -10,13 +10,18 @@ import static seedu.tuitionbook.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.tuitionbook.commons.core.GuiSettings;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.NameContainsKeywordsPredicate;
+import seedu.tuitionbook.model.person.Person;
 import seedu.tuitionbook.testutil.AddressBookBuilder;
+import seedu.tuitionbook.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -86,6 +91,25 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasLesson_nullLesson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasLesson(null));
+    }
+
+    @Test
+    public void hasLesson_lessonNotInLessonBook_returnsFalse() {
+        Lesson fakeLesson = new Lesson("fakelesson", LocalDateTime.of(2000, 1, 1, 0, 0));
+        assertFalse(modelManager.hasLesson(List.of(fakeLesson)));
+    }
+
+    @Test
+    public void hasLesson_lessonInLessonBook_returnsTrue() {
+        Lesson lesson = new Lesson("lesson", LocalDateTime.of(2000, 1, 1, 0, 0));
+        Person alice = new PersonBuilder().withLessons(List.of(lesson)).build();
+        modelManager.addPerson(alice);
+        assertTrue(modelManager.hasLesson(List.of(lesson)));
     }
 
     @Test

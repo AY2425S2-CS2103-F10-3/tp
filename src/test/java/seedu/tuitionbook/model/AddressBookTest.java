@@ -9,6 +9,7 @@ import static seedu.tuitionbook.testutil.Assert.assertThrows;
 import static seedu.tuitionbook.testutil.TypicalPersons.ALICE;
 import static seedu.tuitionbook.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
 import seedu.tuitionbook.model.person.exceptions.DuplicatePersonException;
 import seedu.tuitionbook.testutil.PersonBuilder;
@@ -76,6 +78,25 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasLesson_nullLesson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasLesson(null));
+    }
+
+    @Test
+    public void hasLesson_lessonNotInAddressBook_returnsFalse() {
+        Lesson fakeLesson = new Lesson("fakelesson", LocalDateTime.of(2000, 1, 1, 0, 0));
+        assertFalse(addressBook.hasLesson(List.of(fakeLesson)));
+    }
+
+    @Test
+    public void hasLesson_lessonWithSameTimeslotInAddressBook_returnsTrue() {
+        Lesson lesson = new Lesson("lesson", LocalDateTime.of(2000, 1, 1, 0, 0));
+        Person alice = new PersonBuilder().withLessons(List.of(lesson)).build();
+        addressBook.addPerson(alice);
+        assertTrue(addressBook.hasLesson(List.of(lesson)));
     }
 
     @Test
