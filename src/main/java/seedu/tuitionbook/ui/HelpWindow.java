@@ -24,6 +24,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...   Edit contact\n"
             + "   Note: Editing of lessons is currently not supported\n"
             + "  list                                                             List all contacts\n"
+            + "  lesson-add INDEX [l/LESSON]...                                   Add a new lesson to a contact\n"
+            + "  lesson-delete INDEX [l/LESSON]...                                Deletes lesson from a contact\n"
             + "  find KEYWORD [MORE_KEYWORDS]                                     Find contacts by keyword\n"
             + "  clear                                                            Clear all contacts\n"
             + "  exit                                                             Exit the application\n"
