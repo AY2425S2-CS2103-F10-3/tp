@@ -64,7 +64,7 @@ public class LessonAddCommandTest {
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        List<Lesson> lessonsToAdd = List.of();
+        List<Lesson> lessonsToAdd = List.of(EXAMPLE_LESSON);
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
@@ -94,7 +94,6 @@ public class LessonAddCommandTest {
         List<Lesson> lessonsToAdd = List.of(EXAMPLE_LESSON);
 
         LessonAddCommand addFirstCommand = new LessonAddCommand(INDEX_FIRST_PERSON, lessonsToAdd);
-        LessonAddCommand addSecondCommand = new LessonAddCommand(INDEX_SECOND_PERSON, lessonsToAdd);
 
         // same object -> returns true
         assertTrue(addFirstCommand.equals(addFirstCommand));
