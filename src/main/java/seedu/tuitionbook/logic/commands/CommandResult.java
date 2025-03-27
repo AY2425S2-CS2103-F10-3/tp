@@ -19,6 +19,11 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final String lessonString;
+
+    /** List of lessons should be shown to the user. */
+    private final boolean showLesson;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -26,6 +31,20 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.lessonString = "";
+        this.showLesson = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with all the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         String lessonString, boolean showLesson) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.lessonString = lessonString;
+        this.showLesson = showLesson;
     }
 
     /**
@@ -36,8 +55,20 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code lessonsString},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, String lessonsString) {
+        this(feedbackToUser, false, false, lessonsString, true);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public String getLessonString() {
+        return lessonString;
     }
 
     public boolean isShowHelp() {
@@ -46,6 +77,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowLesson() {
+        return showLesson;
     }
 
     @Override
@@ -62,12 +97,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && lessonString.equals(otherCommandResult.lessonString)
+                && showLesson == otherCommandResult.showLesson;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, lessonString, showLesson);
     }
 
     @Override
@@ -76,6 +113,8 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("lessonString", lessonString)
+                .add("showLesson", showLesson)
                 .toString();
     }
 
