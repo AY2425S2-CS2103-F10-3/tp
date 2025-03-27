@@ -22,6 +22,7 @@ import seedu.tuitionbook.logic.commands.ExitCommand;
 import seedu.tuitionbook.logic.commands.FindCommand;
 import seedu.tuitionbook.logic.commands.HelpCommand;
 import seedu.tuitionbook.logic.commands.LessonAddCommand;
+import seedu.tuitionbook.logic.commands.LessonDeleteCommand;
 import seedu.tuitionbook.logic.commands.ListCommand;
 import seedu.tuitionbook.logic.parser.exceptions.ParseException;
 import seedu.tuitionbook.model.person.NameContainsKeywordsPredicate;
@@ -96,6 +97,13 @@ public class AddressBookParserTest {
                 + " "
                 + "l/Elementary Mathematics;2025-12-12T12:00:00";
         assertTrue(parser.parseCommand(commandString) instanceof LessonAddCommand);
+    
+    @Test
+    public void parseCommand_lessonDelete() throws Exception {
+        String commandString = LessonDeleteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + "l/Elementary Mathematics;2025-12-12T12:00:00";
+        assertTrue(parser.parseCommand(commandString) instanceof LessonDeleteCommand);
     }
 
     @Test

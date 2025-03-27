@@ -16,7 +16,7 @@ import seedu.tuitionbook.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103-f10-3.github.io/tp/";
-    public static final String HELP_MESSAGE = "TuitionBookPro Commands Help\n"
+    public static final String HELP_MESSAGE = "TuitionBook Commands Help\n"
             + "---------------------\n"
             + "Commands:\n"
             + "  add NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] [l/LESSON]...         Add a new contact\n"
@@ -24,6 +24,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...   Edit contact\n"
             + "   Note: Editing of lessons is currently not supported\n"
             + "  list                                                             List all contacts\n"
+            + "  lesson-add INDEX [l/LESSON]...                                   Add a new lesson to a contact\n"
+            + "  lesson-delete INDEX [l/LESSON]...                                Deletes lesson from a contact\n"
             + "  find KEYWORD [MORE_KEYWORDS]                                     Find contacts by keyword\n"
             + "  clear                                                            Clear all contacts\n"
             + "  exit                                                             Exit the application\n"
