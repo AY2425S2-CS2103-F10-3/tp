@@ -26,6 +26,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "  list                                                             List all contacts\n"
             + "  lesson-add INDEX [l/LESSON]...                                   Add a new lesson to a contact\n"
             + "  lesson-delete INDEX [l/LESSON]...                                Deletes lesson from a contact\n"
+            + "  lesson-list INDEX                                                Lists the lessons of the contact\n"
             + "  find KEYWORD [MORE_KEYWORDS]                                     Find contacts by keyword\n"
             + "  clear                                                            Clear all contacts\n"
             + "  exit                                                             Exit the application\n"
