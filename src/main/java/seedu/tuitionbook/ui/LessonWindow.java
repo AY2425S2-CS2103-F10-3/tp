@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import seedu.tuitionbook.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a Lesson page
  */
 public class LessonWindow extends UiPart<Stage> {
 
@@ -19,23 +19,23 @@ public class LessonWindow extends UiPart<Stage> {
     private Label lessonLabel;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new LessonWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the LessonWindow.
      */
     public LessonWindow(Stage root) {
         super(FXML, root);
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new LessonWindow.
      */
     public LessonWindow() {
         this(new Stage());
     }
 
     /**
-     * Shows the help window.
+     * Shows the lesson window.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -61,21 +61,21 @@ public class LessonWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the lesson window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the lesson window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the lesson window.
      */
     public void focus() {
         getRoot().requestFocus();
