@@ -105,7 +105,7 @@ public class AddressBookParserTest {
                 + " "
                 + "l/Elementary Mathematics;2025-12-12T12:00:00";
         assertTrue(parser.parseCommand(commandString) instanceof LessonAddCommand);
-    
+
     @Test
     public void parseCommand_lessonDelete() throws Exception {
         String commandString = LessonDeleteCommand.COMMAND_WORD + " "
@@ -122,6 +122,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

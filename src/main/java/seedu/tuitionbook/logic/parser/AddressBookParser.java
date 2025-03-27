@@ -73,10 +73,10 @@ public class AddressBookParser {
 
         case LessonAddCommand.COMMAND_WORD:
             return new LessonAddCommandParser().parse(arguments);
-            
+
         case LessonDeleteCommand.COMMAND_WORD:
             return new LessonDeleteCommandParser().parse(arguments);
-            
+
         case LessonListCommand.COMMAND_WORD:
             return new LessonListCommandParser().parse(arguments);
 
