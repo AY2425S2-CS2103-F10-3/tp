@@ -49,6 +49,8 @@ public class LessonAddCommand extends Command {
     public LessonAddCommand(Index index, List<Lesson> lessonsToAdd) {
         requireNonNull(index);
         requireNonNull(lessonsToAdd);
+        assert !lessonsToAdd.isEmpty();
+        assert index.getZeroBased() < lessonsToAdd.size();
 
         this.index = index;
         this.lessonsToAdd = lessonsToAdd;
