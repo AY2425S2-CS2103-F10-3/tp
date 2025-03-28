@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LessonAddCommandParser" as LessonAddCommandParser LOGIC_COLOR
+participant "d:LessonAddCommand" as LessonAddCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("lesson-add 1 l/English;2025-12-12T12:00:00")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("lesson-add 1 l/English;2025-12-12T12:00:00")
+activate AddressBookParser
+
+create LessonAddCommandParser
+AddressBookParser -> LessonAddCommandParser
+activate LessonAddCommandParser
+
+LessonAddCommandParser --> AddressBookParser
+deactivate LessonAddCommandParser
+
+AddressBookParser -> LessonAddCommandParser : parse("1 l/English;2025-12-12T12:00:00")
+activate LessonAddCommandParser
+
+create LessonAddCommand
+LessonAddCommandParser -> LessonAddCommand
+activate LessonAddCommand
+
+LessonAddCommand --> LessonAddCommandParser :
+deactivate LessonAddCommand
+
+LessonAddCommandParser --> AddressBookParser : d
+deactivate LessonAddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LessonAddCommandParser -[hidden]-> AddressBookParser
+destroy LessonAddCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> LessonAddCommand : execute(m)
+activate LessonAddCommand
+
+LessonAddCommand -> Model : setPerson(1, editedPerson)
+activate Model
+
+Model --> LessonAddCommand
+deactivate Model
+
+create CommandResult
+LessonAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LessonAddCommand
+deactivate CommandResult
+
+LessonAddCommand --> LogicManager : r
+deactivate LessonAddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
