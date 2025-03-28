@@ -246,6 +246,11 @@ The following sequence diagram shows how a lesson-add operation goes through the
 ![LessonAddSequenceDiagram](images/LessonAddSequenceDiagram.png)
 
 
+### Lesson-delete feature
+
+The following sequence diagram shows how a lesson-delete operation goes through the `Logic` component:
+
+![LessonDeleteSequenceDiagram](images/LessonDeleteSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
