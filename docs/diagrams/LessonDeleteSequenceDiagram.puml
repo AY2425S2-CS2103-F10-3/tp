@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LessonDeleteCommandParser" as LessonDeleteCommandParser LOGIC_COLOR
+participant "d:LessonDeleteCommand" as LessonDeleteCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("lesson-delete 1 l/English;2025-12-12T12:00:00")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("lesson-delete 1 l/English;2025-12-12T12:00:00")
+activate AddressBookParser
+
+create LessonDeleteCommandParser
+AddressBookParser -> LessonDeleteCommandParser
+activate LessonDeleteCommandParser
+
+LessonDeleteCommandParser --> AddressBookParser
+deactivate LessonDeleteCommandParser
+
+AddressBookParser -> LessonDeleteCommandParser : parse("1 l/English;2025-12-12T12:00:00")
+activate LessonDeleteCommandParser
+
+create LessonDeleteCommand
+LessonDeleteCommandParser -> LessonDeleteCommand
+activate LessonDeleteCommand
+
+LessonDeleteCommand --> LessonDeleteCommandParser :
+deactivate LessonDeleteCommand
+
+LessonDeleteCommandParser --> AddressBookParser : d
+deactivate LessonDeleteCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LessonDeleteCommandParser -[hidden]-> AddressBookParser
+destroy LessonDeleteCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> LessonDeleteCommand : execute(m)
+activate LessonDeleteCommand
+
+LessonDeleteCommand -> Model : setPerson(1, editedPerson)
+activate Model
+
+Model --> LessonDeleteCommand
+deactivate Model
+
+create CommandResult
+LessonDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LessonDeleteCommand
+deactivate CommandResult
+
+LessonDeleteCommand --> LogicManager : r
+deactivate LessonDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
