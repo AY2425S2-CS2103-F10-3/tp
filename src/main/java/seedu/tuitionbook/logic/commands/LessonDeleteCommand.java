@@ -76,7 +76,7 @@ public class LessonDeleteCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
                 .map(Lesson::toString)
-                .reduce("", (x,y) -> y + "\n" + x )));
+                .reduce("", (x, y) -> y + "\n" + x)));
     }
 
     /**
