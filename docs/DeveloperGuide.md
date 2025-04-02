@@ -239,9 +239,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+###  Lesson-add feature
 
-_{Explain here how the data archiving feature will be implemented}_
+The following sequence diagram shows how a lesson-add operation goes through the `Logic` component:
+
+![LessonAddSequenceDiagram](images/LessonAddSequenceDiagram.png)
+
+
+### Lesson-delete feature
+
+The following sequence diagram shows how a lesson-delete operation goes through the `Logic` component:
+
+![LessonDeleteSequenceDiagram](images/LessonDeleteSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
