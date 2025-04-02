@@ -44,11 +44,10 @@ public class LessonListCommand extends Command {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         return new CommandResult(LIST_LESSONS_MESSAGE + person.getName(),
-                person.getName() + "'s Lessons:\n"
-                + person.getLessons().stream()
-                .map(lesson -> lesson.toString())
-                .reduce((a, b) -> a + "\n" + b)
-                .orElse(NO_LESSONS_TO_DISPLAY));
+                person.getName() + "'s Lessons:\n\n" + person.getLessons().stream()
+                        .map(lesson -> lesson.toString())
+                        .reduce((a, b) -> a + "\n" + b)
+                        .orElse(NO_LESSONS_TO_DISPLAY));
     }
 
     @Override

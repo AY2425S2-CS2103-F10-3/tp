@@ -7,7 +7,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.image.Image?>
 <fx:root resizable="false" title="Lessons" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/address_book_32.png" />
+  </icons>
   <scene>
     <Scene>
       <stylesheets>
