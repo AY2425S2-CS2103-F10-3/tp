@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.tuitionbook.logic.commands.LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS;
 import static seedu.tuitionbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.tuitionbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.tuitionbook.testutil.TypicalPersons.getTypicalAddressBook;
@@ -39,8 +40,9 @@ public class LessonDeleteCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), List.of());
 
-        String expectedMessage = String.format(LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setPerson(
@@ -63,8 +65,9 @@ public class LessonDeleteCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), updatedLessons);
 
-        String expectedMessage = String.format(LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setPerson(
@@ -84,8 +87,9 @@ public class LessonDeleteCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), updatedLessons);
 
-        String expectedMessage = String.format(LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setPerson(
