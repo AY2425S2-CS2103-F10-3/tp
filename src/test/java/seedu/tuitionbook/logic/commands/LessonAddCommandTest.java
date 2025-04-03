@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.tuitionbook.logic.commands.LessonAddCommand.MESSAGE_ADD_LESSON_SUCCESS;
 import static seedu.tuitionbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.tuitionbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.tuitionbook.testutil.TypicalPersons.getTypicalAddressBook;
@@ -46,8 +47,10 @@ public class LessonAddCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), updatedLessons);
 
-        String expectedMessage = String.format(LessonAddCommand.MESSAGE_ADD_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_ADD_LESSON_SUCCESS, editedPerson.getName(),
+                lessonsToAdd.stream()
+                .map(Lesson::toString)
+                .reduce("", (s, s2) -> s + "\n" + s2));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()),
