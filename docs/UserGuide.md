@@ -166,7 +166,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding lesson to a person : `lesson-add`
+### Adding lesson(s) to a person : `lesson-add`
 
 Adds the specified lessons to a person in TuitionBook.
 
@@ -175,7 +175,8 @@ FormatL `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 * Adds lesson(s) to a person identified by the specified index.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The lessons provided must be valid (person selected must have the lessons specified in argument provided)
+* The lessons provided must not have the same date & time slot as existing lessons across TuitionBook.
+* The lessons added may be older than the current date & time.
 
 Examples:
 * `lesson-add 1 l/Elementary Mathematics;2025-12-12T12:00:00`
