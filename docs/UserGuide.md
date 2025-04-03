@@ -83,7 +83,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [l/LESSON_NAME;LESSON_DATET
 A person can have any number of tags and lessons (including 0)
 </div><br>
 
-<div markdown="span" class="alert alert-primary">:information_source: **Notes about Add command:**<br>
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes about Add command:**<br>
 
 * A person's name should only contain alphanumeric characters and spaces.
 
@@ -91,10 +93,8 @@ A person can have any number of tags and lessons (including 0)
   e.g. `John Doe` and `john doe` are considered different names.
 
 * Additional spaces in a person's name will be replaced with a single space.
-</div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    LESSON_NAME provided must not contain any special characters, and LESSON_DATETIME must follow the format `yyyy-mm-ddTHH:mm:ss`.
+* LESSON_NAME provided must not contain any special characters, and LESSON_DATETIME must follow the format `yyyy-mm-ddTHH:mm:ss`.
 </div>
 
 Examples:
