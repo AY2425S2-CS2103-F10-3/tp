@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* AddressBook-Level3 (AB3) - [Website](https://se-education.org/addressbook-level3/) 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -389,6 +389,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 3a. Error occurs when saving to file.
+    * 3a1. TuitionBook shows an error message.
+
+      Use case ends.
+
+**Use case: View a contact's lessons**
+
+**MSS**
+
+1. User requests to list a specified contact's lessons.
+2. TuitionBook checks the contact index and contact lessons.
+3. TuitionBook shows a list of lessons for the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Contact index is invalid.
+    * 2a1. TuitionBook shows an error message
+
+      Use case ends
+
+* 2b. The lesson list is empty.
     * 3a1. TuitionBook shows an error message.
 
       Use case ends.
