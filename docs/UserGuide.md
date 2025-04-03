@@ -166,6 +166,22 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding lesson(s) to a person : `lesson-add`
+
+Adds the specified lessons to a person in TuitionBook.
+
+FormatL `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
+
+* Adds lesson(s) to a person identified by the specified index.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The lessons provided must not have the same date & time slot as existing lessons across TuitionBook.
+* The lessons added may be older than the current date & time.
+
+Examples:
+* `lesson-add 1 l/Elementary Mathematics;2025-12-12T12:00:00`
+* `lesson-add 3 l/Chemistry;2025-12-12T13:00:00 l/Biology;2025-12-12T15:00:00 l/Biology;2025-12-22T17:00:00`
+
 ### Deleting a person's lesson : `lesson-delete`
 
 Deletes the specified lessons from a person in TuitionBook.
@@ -250,5 +266,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Add Lesson** | `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​` <br> e.g., `lesson-add 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 **Delete Lesson** | `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​` <br> e.g., `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 **Help** | `help`
