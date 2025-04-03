@@ -81,6 +81,16 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [l/LESSON_NAME;LESSON_DATET
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and lessons (including 0)
+</div><br>
+
+<div markdown="span" class="alert alert-primary">:information_source: **Notes about Add command:**<br>
+
+* A person's name should only contain alphanumeric characters and spaces.
+
+* Capitalization of a person's name differs from the same name without capitalization.<br>
+  e.g. `John Doe` and `john doe` are considered different names.
+
+* Additional spaces in a person's name will be replaced with a single space.
 </div>
 
 Examples:
