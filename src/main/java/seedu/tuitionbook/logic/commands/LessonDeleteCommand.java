@@ -33,7 +33,9 @@ public class LessonDeleteCommand extends Command {
             + PREFIX_LESSON + "LESSON\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_LESSON + "Emath;2025-12-01T12:00:00";
 
-    public static final String MESSAGE_DELETE_LESSON_SUCCESS = "User Lessons Updated: %1$s";
+    public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lessons: \n%1$s";
+    public static final String MESSAGE_LESSON_DOES_NOT_EXIST_IN_PERSON = "The lesson(s) provided does not exist "
+            + "in the selected person!";
     private final Index targetIndex;
     private final List<Lesson> lessonsToDelete;
 
@@ -57,6 +59,12 @@ public class LessonDeleteCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+        if (lessonsToDelete.stream()
+                .map(personToEdit.getLessons()::contains)
+                .anyMatch(contained -> !contained)) {
+            throw new CommandException(MESSAGE_LESSON_DOES_NOT_EXIST_IN_PERSON);
+        }
+
         List<Lesson> updatedLessons = personToEdit.getLessons()
                 .stream()
                 .filter(lesson -> !lessonsToDelete.contains(lesson))
@@ -65,7 +73,10 @@ public class LessonDeleteCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, Messages.format(editedPerson)));
+
+        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x)));
     }
 
     /**
