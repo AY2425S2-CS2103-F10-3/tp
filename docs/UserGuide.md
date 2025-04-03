@@ -268,5 +268,5 @@ Action | Format, Examples
 **List** | `list`
 **Add Lesson** | `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​` <br> e.g., `lesson-add 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 **Delete Lesson** | `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​` <br> e.g., `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
-**List Lesson** | `lesson-list INDEX` <br> e.g., `lesson-list 1s`
+**List Lesson** | `lesson-list INDEX` <br> e.g., `lesson-list 1`
 **Help** | `help`
