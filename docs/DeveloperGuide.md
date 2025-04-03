@@ -323,8 +323,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
 **Use case: View all contacts**
 
 **MSS**
@@ -392,6 +390,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TuitionBook shows an error message.
 
       Use case ends.
+
+**Use case: Add lessons to a contact**
+
+**MSS**
+
+1. User types in contact index to add lessons to, with lessons to add.
+2. TuitionBook checks the contact index, and lessons validity.
+3. TuitionBook adds the lessons to the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Contact index is invalid.
+    * 2a1. TuitionBook shows an error message.
+    
+        Use case ends
+
+* 2b. Lessons provided has the same date and time slot as an existing lesson in TuitionBook.
+    * 2b1. TuitionBook shows an error message.
+
+        Use case ends
 
 **Use case: Delete a contact's lesson**
 
