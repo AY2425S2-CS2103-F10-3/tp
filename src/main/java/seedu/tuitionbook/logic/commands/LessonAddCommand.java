@@ -81,7 +81,7 @@ public class LessonAddCommand extends Command {
                 lessonsToAdd.stream()
                 .map(Lesson::toString)
                 .reduce("", (s, s2) -> s + "\n" + s2)));
-        }
+    }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
