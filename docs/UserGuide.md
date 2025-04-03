@@ -6,7 +6,7 @@ title: User Guide
 TuitionBook is a streamlined, fast, and efficient way to access key student and parent information. Designed with simplicity and speed in mind, this solution is perfect for private tuition teachers who prefer a no-frills, text-based approach to managing student data.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -180,6 +180,20 @@ Format: `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 Examples:
 * `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 * `lesson-delete 3 l/Chemistry;2025-12-12T13:00:00 l/Biology;2025-12-12T15:00:00 l/Biology;2025-12-22T17:00:00`
+
+### Viewing a person's lessons: `lesson-list`
+
+Shows the specified person's lessons in a separate window.
+
+Format: `lesson-list INDEX`
+
+* Shows a person's lessons at specified index
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* A person with no lessons will be returned with `No lessons found`.
+
+Examples:
+* `lesson-list 1`
 
 ### Clearing all entries : `clear`
 
