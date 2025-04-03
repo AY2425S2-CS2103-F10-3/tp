@@ -35,7 +35,7 @@ public class LessonAddCommand extends Command {
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_LESSON + "Math;2025-12-31T12:00:00";
 
-    public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson: %1$s";
+    public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson For %1$s: \n%2$s";
     public static final String MESSAGE_DUPLICATE_LESSON =
             "Error: There is already a student with the same lesson timeslot";
 
@@ -77,8 +77,11 @@ public class LessonAddCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, Messages.format(editedPerson)));
-    }
+        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, editedPerson.getName(),
+                lessonsToAdd.stream()
+                .map(Lesson::toString)
+                .reduce("", (s, s2) -> s + "\n" + s2)));
+        }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
