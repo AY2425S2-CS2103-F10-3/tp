@@ -31,7 +31,8 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_LESSON_DETAILS = "e-math;2025-03-12T18:00:00";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME_1 = "Rachel Walker";
+    private static final String VALID_NAME_2 = "Rachel   Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -76,15 +77,21 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Name expectedName = new Name(VALID_NAME_1);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_1));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_NAME_1 + WHITESPACE;
+        Name expectedName = new Name(VALID_NAME_1);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseName_validValueWithWhitespaceInName_returnsTrimmedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_1);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_2));
     }
 
     @Test
