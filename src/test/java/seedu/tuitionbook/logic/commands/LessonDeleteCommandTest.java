@@ -6,10 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tuitionbook.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.tuitionbook.logic.commands.LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS;
 import static seedu.tuitionbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.tuitionbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.tuitionbook.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -38,8 +40,9 @@ public class LessonDeleteCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), List.of());
 
-        String expectedMessage = String.format(LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setPerson(
@@ -62,8 +65,9 @@ public class LessonDeleteCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), updatedLessons);
 
-        String expectedMessage = String.format(LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setPerson(
@@ -83,8 +87,9 @@ public class LessonDeleteCommandTest {
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), updatedLessons);
 
-        String expectedMessage = String.format(LessonDeleteCommand.MESSAGE_DELETE_LESSON_SUCCESS,
-                Messages.format(editedPerson));
+        String expectedMessage = String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonsToDelete.stream()
+                .map(Lesson::toString)
+                .reduce("", (x, y) -> y + "\n" + x));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setPerson(
@@ -96,6 +101,25 @@ public class LessonDeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        List<Lesson> lessonsToDelete = List.of(
+                new Lesson("Non Existent Lesson", LocalDateTime.of(2028, 12, 12, 12, 0, 0)));
+        LessonDeleteCommand lessonDeleteCommand = new LessonDeleteCommand(INDEX_FIRST_PERSON, lessonsToDelete);
+
+        List<Lesson> updatedLessons = personToEdit.getLessons();
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(), updatedLessons);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.setPerson(
+                expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()),
+                editedPerson);
+
+        assertCommandFailure(lessonDeleteCommand, model, LessonDeleteCommand.MESSAGE_LESSON_DOES_NOT_EXIST_IN_PERSON);
+    }
+
+    @Test
+    public void execute_nonExistentLessonsFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         List<Lesson> lessons = List.of();
 

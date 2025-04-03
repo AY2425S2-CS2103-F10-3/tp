@@ -393,6 +393,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Delete a contact's lesson**
+
+**MSS**
+
+1. User types in contact index to delete, with lessons to delete.
+2. TuitionBook checks the contact index, and lessons validity.
+3. TuitionBook deletes the contact's lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Contact index is invalid.
+    * 2a1. TuitionBook shows an error message
+
+      Use case ends
+
+
+* 2b. Lessons provided does not exist in contact selected.
+    * 3a1. TuitionBook shows an error message.
+
+      Use case ends.
+
 **Use case: View a contact's lessons**
 
 **MSS**
@@ -411,6 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends
 
 * 2b. The lesson list is empty.
+
     * 3a1. TuitionBook shows an error message.
 
       Use case ends.

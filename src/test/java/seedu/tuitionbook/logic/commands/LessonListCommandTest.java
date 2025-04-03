@@ -33,7 +33,7 @@ public class LessonListCommandTest {
         LessonListCommand lessonListCommand = new LessonListCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = LessonListCommand.LIST_LESSONS_MESSAGE + personToList.getName();
-        String expectedLessons = personToList.getName() + "'s Lessons:\n"
+        String expectedLessons = personToList.getName() + "'s Lessons:\n\n"
                 + personToList.getLessons().stream()
                 .map(lesson -> lesson.toString())
                 .reduce((a, b) -> a + "\n" + b)

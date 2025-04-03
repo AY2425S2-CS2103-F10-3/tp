@@ -83,6 +83,10 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [l/LESSON_NAME;LESSON_DATET
 A person can have any number of tags and lessons (including 0)
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    LESSON_NAME provided must not contain any special characters, and LESSON_DATETIME must follow the format `yyyy-mm-ddTHH:mm:ss`.
+</div>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Elementary Math;2025-03-12T18:00:00 t/Sec4`
@@ -102,6 +106,10 @@ Format: `list`
 ### Editing a person : `edit`
 
 Edits an existing person in TuitionBook.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    This command does not support updating of lessons. For these features, see lesson-* commands below.
+</div>
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -147,6 +155,21 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Deleting a person's lesson : `lesson-delete`
+
+Deletes the specified lessons from a person in TuitionBook.
+
+Format: `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
+
+* Deletes a person's lessons at specified index
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The lessons provided must be valid (person selected must have the lessons specified in argument provided)
+
+Examples:
+* `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
+* `lesson-delete 3 l/Chemistry;2025-12-12T13:00:00 l/Biology;2025-12-12T15:00:00 l/Biology;2025-12-22T17:00:00`
 
 ### Viewing a person's lessons: `lesson-list`
 
@@ -217,4 +240,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Delete Lesson** | `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​` <br> e.g., `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 **Help** | `help`
