@@ -345,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in contact they intend to add
+1. User requests to add a contact, providing the details
 2. TuitionBook checks the input data
 3. TuitionBook adds the contact
 
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in contact index to delete.
+1. User requests to delete a contact, providing the contact index
 2. TuitionBook checks the contact index.
 3. TuitionBook deletes the contact.
 
@@ -400,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in contact index to delete, with lessons to delete.
+1. User requests to delete a contact's lesson, providing the contact index and lessons to delete
 2. TuitionBook checks the contact index, and lessons validity.
 3. TuitionBook deletes the contact's lessons.
 
