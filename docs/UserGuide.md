@@ -75,7 +75,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to TuitionBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [l/LESSON_NAME;LESSON_DATETIME]…​ [t/TAG]…​`
 
@@ -164,7 +164,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in TuitionBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Adding lesson(s) to a person : `lesson-add`
@@ -208,9 +208,11 @@ Format: `lesson-list INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * A person with no lessons will be returned with `No lessons found`.
+* Opens a new window to show the lessons.
 
 Examples:
-* `lesson-list 1`
+* `lesson-list 2`
+  ![lesson window](images/lessonWindow.png)
 
 ### Clearing all entries : `clear`
 
