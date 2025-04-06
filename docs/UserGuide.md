@@ -169,30 +169,30 @@ Examples:
 
 ### Adding lesson(s) to a person : `lesson-add`
 
-Adds the specified lessons to a person in TuitionBook.
+Adds the specified lesson(s) to a person in TuitionBook.
 
 Format: `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 
 * Adds lesson(s) to a person identified by the specified index.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The lessons provided must not have the same date & time slot as existing lessons across TuitionBook.
-* The lessons added may be older than the current date & time.
+* The lesson(s) provided must not have the same date & time slot as existing lesson(s) across TuitionBook.
+* The lesson(s) added may be older than the current date & time.
 
 Examples:
 * `lesson-add 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 * `lesson-add 3 l/Chemistry;2025-12-12T13:00:00 l/Biology;2025-12-12T15:00:00 l/Biology;2025-12-22T17:00:00`
 
-### Deleting a person's lesson : `lesson-delete`
+### Deleting a person's lesson(s) : `lesson-delete`
 
-Deletes the specified lessons from a person in TuitionBook.
+Deletes the specified lesson(s) from a person in TuitionBook.
 
 Format: `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 
-* Deletes a person's lessons at specified index
+* Deletes a person's lesson(s) at specified index
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The lessons provided must be valid (person selected must have the lessons specified in argument provided)
+* The lesson(s) provided must be valid (person selected must have the lessons specified in argument provided)
 
 Examples:
 * `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
@@ -200,11 +200,15 @@ Examples:
 
 ### Viewing a person's lessons: `lesson-list`
 
-Shows the specified person's lessons in a separate window.
+Shows the specified person's lesson(s) in a separate window.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    This command will not auto-reload on updates to TuitionBook. The user is required to re-run the command to refresh the contents.
+</div>
 
 Format: `lesson-list INDEX`
 
-* Shows a person's lessons at specified index
+* Shows a person's lesson(s) at specified index
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * A person with no lessons will be returned with `No lessons found`.
