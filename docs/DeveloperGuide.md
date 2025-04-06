@@ -364,6 +364,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+* 2c. Lesson already exists.
+  * 2c1. TuitionBook prints the error message for same lesson timeslot.
+
 
 * 3a. Error occurs when saving to file.
   * 3a1. TuitionBook shows an error message.
