@@ -183,16 +183,16 @@ Examples:
 * `lesson-add 1 l/Elementary Mathematics;2025-12-12T12:00:00`
 * `lesson-add 3 l/Chemistry;2025-12-12T13:00:00 l/Biology;2025-12-12T15:00:00 l/Biology;2025-12-22T17:00:00`
 
-### Deleting a person's lesson : `lesson-delete`
+### Deleting a person's lesson(s) : `lesson-delete`
 
-Deletes the specified lessons from a person in TuitionBook.
+Deletes the specified lesson(s) from a person in TuitionBook.
 
 Format: `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 
-* Deletes a person's lessons at specified index
+* Deletes a person's lesson(s) at specified index
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The lessons provided must be valid (person selected must have the lessons specified in argument provided)
+* The lesson(s) provided must be valid (person selected must have the lessons specified in argument provided)
 
 Examples:
 * `lesson-delete 1 l/Elementary Mathematics;2025-12-12T12:00:00`
