@@ -202,6 +202,10 @@ Examples:
 
 Shows the specified person's lessons in a separate window.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    This command will not auto-reload on updates to TuitionBook. The user is required to re-run the command to refresh the contents.
+</div>
+
 Format: `lesson-list INDEX`
 
 * Shows a person's lessons at specified index
