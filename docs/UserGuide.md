@@ -88,6 +88,7 @@ A person can have any number of tags and lessons (including 0)
 :information_source: **Notes about Add command:**<br>
 
 * A person's name should only contain alphanumeric characters and spaces.
+  Only English characters are accepted, special characters and characters of other languages are not supported.
 
 * Capitalization of a person's name differs from the same name without capitalization.<br>
   e.g. `John Doe` and `john doe` are considered different names.
@@ -170,7 +171,7 @@ Examples:
 
 Adds the specified lessons to a person in TuitionBook.
 
-FormatL `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
+Format: `lesson-add INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 
 * Adds lesson(s) to a person identified by the specified index.
 * The index refers to the index number shown in the displayed person list.
