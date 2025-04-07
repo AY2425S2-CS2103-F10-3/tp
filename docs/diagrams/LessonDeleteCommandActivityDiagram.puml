@@ -1,0 +1,23 @@
+@startuml
+start
+:Execute command;
+:Get filtered person list from model;
+:Check if index is within bounds;
+if (Valid index?) then (yes)
+  :Get target person;
+  :Check if lessons to delete exist in person's lessons;
+  if (All lessons exist?) then (yes)
+    :Create edited person\nwith lessons removed;
+    :Update Model with edited person;
+    :Refresh the UI;
+    :Return CommandResult\n(success message);
+    stop
+  else (no)
+    :Throw CommandException\n(Non-existent lessons provided);
+    stop
+  endif
+else (no)
+  :Throw CommandException\n(Index out of bounds);
+  stop
+endif
+@enduml

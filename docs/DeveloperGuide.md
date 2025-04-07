@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* AddressBook-Level3 (AB3) - [Website](https://se-education.org/addressbook-level3/) 
+* AddressBook-Level3 (AB3) - [Website](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,98 +155,54 @@ Classes used by multiple components are in the `seedu.tuitionbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+###  Adding/Removing lessons feature
 
-#### Proposed Implementation
+#### Implementation - Parsers
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+As for parsing the commands entered by the user, there is the `LessonAddCommandParser` and `LessonDeleteCommandParser`.
+They are used to extract the lesson information provided, along with the index of the contact to operate on.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Both Parser Commands perform the key steps during execution:
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+- Tokenise the user's input using `ArgumentTokenizer`, which splits the index and arguments by `PREFIX_LESSON`
+- Index of person to operate on is determined with `ParserUtil#parseIndex`, and throws a `ParseException` if the index is invalid.
+- Checks that `PREFIX_LESSON` exists using `arePrefixesPresent` implemented by the parsers.
+- Parses the lessons into `Lesson` objects using `ParserUtil#parseLessons`, and throws a `ParseException` if the lesson details provided are incorrect.
+- Returns a constructed `LessonAddCommand` or `LessonDeleteCommand` with the parsed index and lessons list.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The following activity diagram summarizes what happens when the parsers (`LessonAddCommandParser` and `LessonDeleteCommandParser`) attempts to parse the user's input:
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+![LessonAddDeleteCommandParserActivityDiagram.png](images/LessonAddDeleteCommandParserActivityDiagram.png)
 
-![UndoRedoState0](images/UndoRedoState0.png)
+#### Implementation - Commands
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The lesson adding and removing feature is implemented by the `LessonAddCommand` and `LessonDeleteCommand` classes.
+They are used to add or remove lessons of a contact in TuitionBook, based on the index specified by the user.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Both commands perform the following key steps during execution:
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+- Validate that INDEX is within the bounds of the filtered persons list `model#getFilteredPersonList()`.
+- Check for duplicate lessons provided by the user after parsing
+  - Duplicates existing within 2 different users is detected using `Model#hasLesson(List<Lesson>)`
+  - Duplicates existing within the command is detected with a hashmap of lesson timings
+- Perform the action on the person
+  - In `LessonAddCommand`, the existing and new lessons are combined using `Stream.concat`
+  - In `LessonDeleteCommand`, the lessons to delete are removed from the existing lessons using Streams filter.
+- Updating the person using `createEditedPerson` method implemented by both commands, which creates a new Person with updated lessons.
+- TuitionBook is then updated using `Model#setPerson` to update the model with the new person, and the UI is refreshed using `Model#updateFilteredPersonList`.
+- Returns a constructed `CommandResult` with success messages and details of lessons added/removed.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The following diagram summarises what happens when a user executes the `LessonAddCommand`:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+![LessonAddCommandActivityDiagram.png](images/LessonAddCommandActivityDiagram.png)
 
-</div>
+The following diagram summarises what happens when a user executes the `LessonDeleteCommand`:
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-###  Lesson-add feature
+![LessonDeleteCommandActivityDiagram.png](images/LessonDeleteCommandActivityDiagram.png)
 
 The following sequence diagram shows how a lesson-add operation goes through the `Logic` component:
 
 ![LessonAddSequenceDiagram](images/LessonAddSequenceDiagram.png)
-
-
-### Lesson-delete feature
 
 The following sequence diagram shows how a lesson-delete operation goes through the `Logic` component:
 
@@ -413,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Input field(s) are incorrect
   * 2a1. TuitionBook shows an error message
-  
+
     Use case ends.
 
 * 2b. Contact name already exists.
@@ -440,7 +396,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid command
     * 1a1. TuitionBook shows an error message.
-  
+
         Use Case ends
 * 3a. No contacts found matching the name specified.
   * 3a1. TuitionBook shows a 0 persons found message along with no contacts shown.
@@ -461,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Contact index is invalid.
     * 2a1. TuitionBook shows an error message.
-    
+
         Use case ends
 
 * 2b. Lessons provided has the same date and time slot as an existing lesson in TuitionBook.
@@ -554,7 +510,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tuitionbook.jar` command to run the application.<br>
       A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data and the window size may not be optimum.<br>
-      ![Ui](images/Ui.png) 
+      ![Ui](images/Ui.png)
 
 1. Saving window preferences
 

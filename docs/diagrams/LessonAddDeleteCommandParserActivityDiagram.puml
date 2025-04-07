@@ -1,0 +1,19 @@
+@startuml
+start
+:Receive user input;
+:Tokenize input with PREFIX_LESSON;
+:Parse index from preamble;
+if (Index valid?) then (yes)
+  if (PREFIX_LESSON present?) then (yes)
+    :Parse lessons list;
+    :Create the command object:\nLessonAddCommand / LessonDeleteCommand;
+    stop
+  else (no)
+    :Throw ParseException\n(Missing PREFIX_LESSON);
+    stop
+  endif
+else (no)
+  :Throw ParseException\n(Invalid index);
+  stop
+endif
+@enduml

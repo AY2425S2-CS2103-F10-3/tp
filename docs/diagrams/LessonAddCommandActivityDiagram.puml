@@ -1,0 +1,23 @@
+@startuml
+start
+:Execute command;
+:Get filtered person list from model;
+:Check if index is within bounds;
+if (Valid index?) then (yes)
+  :Get target person;
+  :Check for duplicate lessons;
+  if (Duplicates found?) then (yes)
+    :Throw CommandException\n(Duplicate lesson);
+    stop
+  else (no)
+    :Create edited person\nwith added lessons;
+    :Update Model with edited person;
+    :Refresh the UI;
+    :Return CommandResult\n(success message);
+    stop
+  endif
+else (no)
+  :Throw CommandException\n(Index out of bounds);
+  stop
+endif
+@enduml
