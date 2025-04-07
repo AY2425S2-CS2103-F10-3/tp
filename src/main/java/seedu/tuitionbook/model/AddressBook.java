@@ -96,7 +96,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a lesson with the same timingexists in the address book.
+     * Returns true if a lesson with the same timing exists in the address book.
      */
     public boolean hasLesson(List<Lesson> lessons) {
         requireNonNull(lessons);

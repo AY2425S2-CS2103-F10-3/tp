@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.tuitionbook.commons.exceptions.IllegalValueException;
 import seedu.tuitionbook.model.AddressBook;
 import seedu.tuitionbook.model.ReadOnlyAddressBook;
+import seedu.tuitionbook.model.lesson.Lesson;
 import seedu.tuitionbook.model.person.Person;
 
 /**
@@ -20,6 +21,8 @@ import seedu.tuitionbook.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_LESSON = "Persons list contains duplicate lesson(s) "
+            + "and/or lessons with clashing times";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -47,11 +50,22 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        ArrayList<String> existingLessons = new ArrayList<>();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
+
+            List<Lesson> personLessonsToCheck = person.getLessons();
+            for (Lesson lesson : personLessonsToCheck) {
+                String exisitingLessonTime = lesson.getDatetimeAsString();
+                if (existingLessons.contains(exisitingLessonTime)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_LESSON);
+                }
+                existingLessons.add(exisitingLessonTime);
+            }
+
             addressBook.addPerson(person);
         }
         return addressBook;
