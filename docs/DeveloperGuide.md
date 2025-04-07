@@ -164,7 +164,7 @@ They are used to extract the lesson information provided, along with the index o
 
 Both Parser Commands perform the key steps during execution:
 
-- Tokenise the user's input suing `ArgumentTokenizer`, which splits the index and arguments by `PREFIX_LESSON`
+- Tokenise the user's input using `ArgumentTokenizer`, which splits the index and arguments by `PREFIX_LESSON`
 - Index of person to operate on is determined with `ParserUtil#parseIndex`, and throws a `ParseException` if the index is invalid.
 - Checks that `PREFIX_LESSON` exists using `arePrefixesPresent` implemented by the parsers.
 - Parses the lessons into `Lesson` objects using `ParserUtil#parseLessons`, and throws a `ParseException` if the lesson details provided are incorrect.
