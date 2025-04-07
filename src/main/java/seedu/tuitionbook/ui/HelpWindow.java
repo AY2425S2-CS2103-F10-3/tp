@@ -19,7 +19,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = "TuitionBook Commands Help\n"
             + "---------------------\n"
             + "Commands:\n"
-            + "  add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG] [l/LESSON]...         Add a new contact\n"
+            + "  add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]... [l/LESSON]...         Add a new contact\n"
             + "  delete INDEX                                                     Delete contact at index\n"
             + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...   Edit contact\n"
             + "   Note: Editing of lessons is currently not supported\n"

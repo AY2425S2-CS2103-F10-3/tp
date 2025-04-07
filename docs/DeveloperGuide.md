@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-**Use case: View all contacts**
+**Use case: UC01 - View all contacts**
 
 **MSS**
 
@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add a contact**
+**Use case: UC02 - Add a contact**
 
 **MSS**
 
@@ -356,7 +356,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
-
 * 2b. Contact name already exists.
   * 2b1. TuitionBook prints the error message for duplicate user.
 
@@ -365,15 +364,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Lesson already exists.
   * 2c1. TuitionBook prints the error message for same lesson timeslot.
 
+    Use case ends.
+
 * 2d. Lessons with the same timeslot found in input details given.
     * 2d1. TuitionBook prints the error message for same lesson timeslot.
+
+    Use case ends.
 
 * 3a. Error occurs when saving to file.
   * 3a1. TuitionBook shows an error message.
 
     Use case ends.
 
-**Use case: Delete a contact**
+**Use case: UC03 - Delete a contact**
 
 **MSS**
 
@@ -388,7 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. Contact index is invalid.
     * 2a1. TuitionBook shows an error message
 
-      Use case ends
+      Use case ends.
 
 
 * 3a. Error occurs when saving to file.
@@ -396,7 +399,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add lessons to a contact**
+**Use case: UC04 - Edit a contact**
+
+**MSS**
+
+1. User requests to edit a contact, providing the details.
+2. TuitionBook checks the input data
+3. TuitionBook edits the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Input field(s) are incorrect
+  * 2a1. TuitionBook shows an error message
+  
+    Use case ends.
+
+* 2b. Contact name already exists.
+    * 2b1. TuitionBook prints the error message for duplicate user.
+
+      Use case ends.
+
+* 3a. Error occurs when saving to file.
+    * 3a1. TuitionBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Find contact**
+
+**MSS**
+
+1. User types in the full name of the contact(s) to find.
+2. TuitionBook searches for contacts with the exact name specified.
+3. TuitionBook returns a list of contacts with matching names.
+
+    Use Case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command
+    * 1a1. TuitionBook shows an error message.
+  
+        Use Case ends
+* 3a. No contacts found matching the name specified.
+  * 3a1. TuitionBook shows a 0 persons found message along with no contacts shown.
+
+    Use Case ends.
+
+**Use case: UC06 - Add lessons to a contact**
 
 **MSS**
 
@@ -421,7 +472,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Lessons with the same timeslot found in input details given.
     * 2c1. TuitionBook prints the error message for same lesson timeslot.
 
-**Use case: Delete a contact's lesson**
+      Use case ends
+
+**Use case: UC07 - Delete a contact's lesson**
 
 **MSS**
 
@@ -444,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: View a contact's lessons**
+**Use case: UC08 - View a contact's lessons**
 
 **MSS**
 
@@ -471,6 +524,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module**: A subject or topic that will be being taught.
+* **Non-Functional Requirements**: Constraints that should be followed with regards to the system's development and operation.
+* **Alphanumeric**: A character that is either a letter in the english alphabet or a number. Specifically from a-z, A-Z, 0-9.
+* **Lesson**: The scheduled date and time that the tutor will teach his students a module.
+* **JSON (JavaScript Object Notation)** : The file format the system uses to store contact details.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -487,18 +545,29 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Ensure you have Java `17` or above installed in your Computer.<br>
+         **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103-F10-3/tp/releases).
+
+   1. Copy the file to the folder you want to use as the _home folder_ for your TuitionBook.
+
+   1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tuitionbook.jar` command to run the application.<br>
+      A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data and the window size may not be optimum.<br>
+      ![Ui](images/Ui.png) 
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running the `java -jar tuitionbook.jar` command again.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Shutdown
+
+    1. Enter the `exit` command to close the application.
+
+
 
 ### Deleting a person
 
@@ -515,12 +584,18 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. From the initial sample data, run a command to initiate a save to the data file and close the application.
 
-1. _{ more test cases …​ }_
+   1. Delete the data file and re-launch the application.<br>
+      Expected: TuitionBook will restart with the sample data.
+
+1. Dealing with corrupted data files
+
+   1. From the initial sample data, run a command to initiate a save to the data file and close the application.
+
+   1. Modify any contact to have the same name and/or lesson with another contact in the data file and re-launch the application.<br>
+      Expected: TuitionBook will start with empty data. The data file will only update after a save has been initiated.
