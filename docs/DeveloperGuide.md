@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | Tutor             | indicate time slots as "travelling time" or "lunch time"                                                            | I can avoid overlapping scheduling lessons during other misc timings         |
 | `**`     | Tutor             | tag students with labels ("P1", "Sec3", etc)                                                                        | I can better plan my teaching content                                        |
 | `**`     | Tutor             | tag students with location labels ("Clementi Area", "Bishan Area", etc.)                                            | I can better organise my teaching route                                      |
-| `*`      | Tutor             | export student's contact details to my phone's contact list                                                         | I can contact them without using TutionBook                                  |
+| `*`      | Tutor             | export student's contact details to my phone's contact list                                                         | I can contact them without using TuitionBook                                 |
 |----------|-------------------| ------------------------------------------------------------------------------------------------------------------- |------------------------------------------------------------------------------|
 
 *{More to be added}*
