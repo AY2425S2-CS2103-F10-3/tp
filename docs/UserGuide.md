@@ -191,6 +191,11 @@ Examples:
 
 Deletes the specified lesson(s) from a person in TuitionBook.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+    If the same two lessons are provided (same module name and datetime) in the user's command, TuitionBook will 
+    remove one of the duplicates and perform the deletion of lessons as per normal.
+</div>
+
 Format: `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`
 
 * Deletes a person's lesson(s) at specified index
