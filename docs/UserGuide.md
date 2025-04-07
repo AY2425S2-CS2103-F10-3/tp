@@ -112,7 +112,7 @@ Examples:
 
 Shows a list of all persons in TuitionBook.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
     TuitionBook will only show upcoming lessons (if any), and will display a default message if there is no lessons to display.
 </div>
 
@@ -122,7 +122,7 @@ Format: `list`
 
 Edits an existing person in TuitionBook.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
     This command does not support updating of lessons. For these features, see lesson-* commands below.
 </div>
 
@@ -206,7 +206,7 @@ Examples:
 
 Shows the specified person's lesson(s) in a separate window.
 
-<div markdown="span" class="alert alert-primary">:exclamation: **Warning:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
     This command will not auto-reload on updates to TuitionBook. The user is required to re-run the command to refresh the contents.
 </div>
 
