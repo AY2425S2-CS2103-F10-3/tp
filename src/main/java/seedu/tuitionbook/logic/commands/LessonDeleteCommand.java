@@ -28,12 +28,13 @@ import seedu.tuitionbook.model.tag.Tag;
 public class LessonDeleteCommand extends Command {
     public static final String COMMAND_WORD = "lesson-delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the lesson of the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the lesson(s) of the person identified by the index number used "
+            + "in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_LESSON + "LESSON\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_LESSON + "Emath;2025-12-01T12:00:00";
 
-    public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lessons: \n%1$s";
+    public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lesson(s): \n%1$s";
     public static final String MESSAGE_LESSON_DOES_NOT_EXIST_IN_PERSON = "The lesson(s) provided does not exist "
             + "in the selected person!";
     private final Index targetIndex;
@@ -46,7 +47,7 @@ public class LessonDeleteCommand extends Command {
     public LessonDeleteCommand(Index index, List<Lesson> lessonsToDelete) {
         requireAllNonNull(index, lessonsToDelete);
         this.targetIndex = index;
-        this.lessonsToDelete = lessonsToDelete;
+        this.lessonsToDelete = lessonsToDelete.stream().distinct().toList();
     }
 
     @Override

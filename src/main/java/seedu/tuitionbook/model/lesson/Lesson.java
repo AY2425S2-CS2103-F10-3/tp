@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 /**
  * Represents a Lesson in the address book.
@@ -73,6 +74,11 @@ public class Lesson {
 
         Lesson otherLesson = (Lesson) other;
         return module.equals(otherLesson.module) && date.equals(otherLesson.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(module, date);
     }
 
     @Override
