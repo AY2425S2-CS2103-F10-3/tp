@@ -9,7 +9,9 @@ import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.tuitionbook.commons.util.ToStringBuilder;
 import seedu.tuitionbook.logic.Messages;
@@ -65,6 +67,14 @@ public class AddCommand extends Command {
         List<Lesson> lessonsToCheck = toAdd.getLessons();
         if (model.hasLesson(lessonsToCheck)) {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+        }
+
+        Set<String> seenTimings = new HashSet<>();
+        for (Lesson lesson : lessonsToCheck) {
+            String datetime = lesson.getDatetimeAsString();
+            if (!seenTimings.add(datetime)) {
+                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+            }
         }
 
         model.addPerson(toAdd);

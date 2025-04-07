@@ -1,6 +1,7 @@
 package seedu.tuitionbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_LESSON;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ import seedu.tuitionbook.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_MISSING_ARGUMENTS = "Function is missing arguments with separator.";
+    public static final String MESSAGE_MISSING_ARGUMENTS = "Error: Invalid lesson format.\nExample format: \""
+            + PREFIX_LESSON + "Math;2025-12-31T12:00:00\"";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final int LESSON_MODULE = 0;
     public static final int LESSON_DATE = 1;

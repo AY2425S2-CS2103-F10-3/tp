@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tuitionbook.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.tuitionbook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -37,7 +38,8 @@ public class LessonAddCommand extends Command {
 
     public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson For %1$s: \n%2$s";
     public static final String MESSAGE_DUPLICATE_LESSON =
-            "Error: There is already a student with the same lesson timeslot";
+            "Error: There is already a student with the same lesson timeslot "
+            + "or user is trying to add lessons with the same timeslot in the given command.";
 
     private final Index index;
     private final List<Lesson> lessonsToAdd;
@@ -73,6 +75,13 @@ public class LessonAddCommand extends Command {
 
         if (model.hasLesson(lessonsToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+        }
+        Set<String> seenTimings = new HashSet<>();
+        for (Lesson lesson : lessonsToAdd) {
+            String datetime = lesson.getDatetimeAsString();
+            if (!seenTimings.add(datetime)) {
+                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
