@@ -510,12 +510,18 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. From the initial sample data, make a change to TuitionBook to initiate a save to the data file and close the application.
 
-1. _{ more test cases …​ }_
+   1. Delete the data file and re-launch the application.<br>
+      Expected: TuitionBook will restart with the sample data.
+
+1. Dealing with corrupted data files
+
+   1. From the initial sample data, make a change to TuitionBook to initiate a save to the data file and close the application.
+
+   1. Modify any contact to have the same name and/or lesson with another contact in the data file and re-launch the application.<br>
+      Expected: TuitionBook will restart with the sample data.
