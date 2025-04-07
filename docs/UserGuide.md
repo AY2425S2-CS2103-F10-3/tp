@@ -96,6 +96,10 @@ A person can have any number of tags and lessons (including 0)
 * Additional spaces in a person's name will be replaced with a single space.
 
 * LESSON_NAME provided must not contain any special characters, and LESSON_DATETIME must follow the format `yyyy-mm-ddTHH:mm:ss`.
+
+* Duplicate emails and phone numbers with other existing contacts are allowed intentionally.
+  This accounts for students who may not have their own phone numbers or emails and would have to another person's email or 
+  phone number such as their parents or friends.
 </div>
 
 Examples:
