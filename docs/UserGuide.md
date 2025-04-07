@@ -97,9 +97,7 @@ A person can have any number of tags and lessons (including 0)
 
 * LESSON_NAME provided must not contain any special characters, and LESSON_DATETIME must follow the format `yyyy-mm-ddTHH:mm:ss`.
 
-* Duplicate emails and phone numbers with other existing contacts are allowed intentionally.
-  This accounts for students who may not have their own phone numbers or emails and would have to another person's email or 
-  phone number such as their parents or friends.
+* Duplicate emails and phone numbers with other existing contacts are allowed intentionally. This accounts for students who may not have their own phone numbers or emails and would have to another person's email or phone number such as their parents or friends.
 </div>
 
 Examples:
@@ -191,9 +189,8 @@ Examples:
 
 Deletes the specified lesson(s) from a person in TuitionBook.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-    If the same two lessons are provided (same module name and datetime) in the user's command, TuitionBook will 
-    remove one of the duplicates and perform the deletion of lessons as per normal.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+    If the same two lessons are provided (same module name and datetime) in the user's command, TuitionBook will remove one of the duplicates and perform the deletion of lessons as per normal.
 </div>
 
 Format: `lesson-delete INDEX [l/LESSON_NAME;LESSON_DATETIME]…​`

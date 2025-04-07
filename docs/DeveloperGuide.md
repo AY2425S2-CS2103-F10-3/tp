@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* AddressBook-Level3 (AB3) - [Website](https://se-education.org/addressbook-level3/) 
+* AddressBook-Level3 (AB3) - [Website](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -176,7 +176,7 @@ The following activity diagram summarizes what happens when the parsers (`Lesson
 
 #### Implementation - Commands
 
-The lesson adding and removing feature is implemented by the `LessonAddCommand` and `LessonDeleteCommand` classes. 
+The lesson adding and removing feature is implemented by the `LessonAddCommand` and `LessonDeleteCommand` classes.
 They are used to add or remove lessons of a contact in TuitionBook, based on the index specified by the user.
 
 Both commands perform the following key steps during execution:
@@ -190,7 +190,7 @@ Both commands perform the following key steps during execution:
   - In `LessonDeleteCommand`, the lessons to delete are removed from the existing lessons using Streams filter.
 - Updating the person using `createEditedPerson` method implemented by both commands, which creates a new Person with updated lessons.
 - TuitionBook is then updated using `Model#setPerson` to update the model with the new person, and the UI is refreshed using `Model#updateFilteredPersonList`.
-- Returns a constructed `CommandResult` with success messages and details of lessons added/removed. 
+- Returns a constructed `CommandResult` with success messages and details of lessons added/removed.
 
 The following diagram summarises what happens when a user executes the `LessonAddCommand`:
 
@@ -369,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Input field(s) are incorrect
   * 2a1. TuitionBook shows an error message
-  
+
     Use case ends.
 
 * 2b. Contact name already exists.
@@ -396,7 +396,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid command
     * 1a1. TuitionBook shows an error message.
-  
+
         Use Case ends
 * 3a. No contacts found matching the name specified.
   * 3a1. TuitionBook shows a 0 persons found message along with no contacts shown.
@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Contact index is invalid.
     * 2a1. TuitionBook shows an error message.
-    
+
         Use case ends
 
 * 2b. Lessons provided has the same date and time slot as an existing lesson in TuitionBook.
@@ -510,7 +510,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tuitionbook.jar` command to run the application.<br>
       A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data and the window size may not be optimum.<br>
-      ![Ui](images/Ui.png) 
+      ![Ui](images/Ui.png)
 
 1. Saving window preferences
 
