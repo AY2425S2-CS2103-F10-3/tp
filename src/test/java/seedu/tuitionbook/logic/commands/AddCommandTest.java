@@ -153,7 +153,8 @@ public class AddCommandTest {
 
         @Override
         public boolean hasLesson(List<Lesson> lessons) {
-            throw new AssertionError("Error: There is already a student with the same lesson timeslot");
+            throw new AssertionError("Error: There is already a student with the same lesson timeslot "
+                    + "or user is trying to add lessons with the same timeslot in the given command.");
         }
 
         @Override

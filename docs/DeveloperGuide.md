@@ -365,6 +365,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Lesson already exists.
   * 2c1. TuitionBook prints the error message for same lesson timeslot.
 
+* 2d. Lessons with the same timeslot found in input details given.
+    * 2d1. TuitionBook prints the error message for same lesson timeslot.
 
 * 3a. Error occurs when saving to file.
   * 3a1. TuitionBook shows an error message.
@@ -415,6 +417,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. TuitionBook shows an error message.
 
         Use case ends
+
+* 2c. Lessons with the same timeslot found in input details given.
+    * 2c1. TuitionBook prints the error message for same lesson timeslot.
 
 **Use case: Delete a contact's lesson**
 
