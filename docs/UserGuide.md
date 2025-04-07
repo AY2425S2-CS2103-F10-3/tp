@@ -109,7 +109,7 @@ Examples:
 Shows a list of all persons in TuitionBook.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    TuitionBook will only show upcoming lessons (if any), and will display a default message if there is no lessons to display.
+    TuitionBook will only show up to 2 upcoming lessons (if any), and will display a default message if there is no lessons to display.
 </div>
 
 Format: `list`
@@ -236,7 +236,7 @@ TuitionBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-TuitionBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TuitionBook data are saved automatically as a JSON file `[JAR file location]/data/tuitionbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TuitionBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
