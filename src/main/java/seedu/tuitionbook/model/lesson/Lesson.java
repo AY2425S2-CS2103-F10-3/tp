@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,7 @@ public class Lesson {
             "Lesson's date format invalid. yyyy-MM-ddTHH:mm:ss";
     public static final String MODULE_NAME_VALIDATION_REGEX = "\\p{Alnum}+( \\p{Alnum}+)*";
     public static final DateTimeFormatter LESSON_DATETIME_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+            DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss");
     public static final DateTimeFormatter DISPLAY_DATETIME_FORMAT =
             DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm:ss");
 
@@ -54,7 +55,7 @@ public class Lesson {
      */
     public static boolean isValidLessonDate(String test) {
         try {
-            LESSON_DATETIME_FORMAT.parse(test);
+            LESSON_DATETIME_FORMAT.withResolverStyle(ResolverStyle.STRICT).parse(test);
             return true;
         } catch (DateTimeParseException e) {
             return false;
