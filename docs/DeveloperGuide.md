@@ -555,3 +555,31 @@ testers are expected to do more *exploratory* testing.
 
    1. Modify any contact to have the same name and/or lesson with another contact in the data file and re-launch the application.<br>
       Expected: TuitionBook will start with empty data. The data file will only update after a save has been initiated.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Team size: 3
+
+1. Modify lesson-related commands to support start and end datetime. The current implementation only allows for a start time without an end time which may be considered unrealistic. For example adding the lesson could be in the format `l/LESSON_NAME;LESSON_START;LESSON_END`.
+
+
+2. Modify the duplicate criteria check to include other fields such as phone number, email and address. The current implementation only uses the contacts name to check for duplicates, which may be needed for more common names and surnames.
+
+
+3. Modify the current implementation of loading a corrupted data file. Currently, if a modified data file is invalid/corrupted, TuitionBook will start without any data but will not update the data file until a command initiating a save feature is called (mentioned in the DG). The new implementation would instead clear the file after an invalid/corrupted data file has been detected.
+
+
+4. Update email regex check to ensure it follows the specified rules. The current check does not allow emails such as `example+_.-example@gmail.com` (Violates rule i) and `example@ab.c-d.com` (Violates rule ii). These emails are expected to be accepted. Emails should be of the format `local-part@domain` and adhere to the following constraints:
+
+   1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, `(+_.-)`. The local-part may not start or end with any special characters.
+
+   2. This is followed by a `@` and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
+      - end with a domain label at least 2 characters long
+      - have each domain label start and end with alphanumeric characters
+      - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+
+5. Modify the name criteria check to allow for valid names that may contain special characters and accented characters. For example, `Guru s/o pritam` contains the special character `/` and `José` contains the accented character `é`.  The current implementation only allows the use of alphanumeric characters, specifically from the following pool of characters `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`.
+
