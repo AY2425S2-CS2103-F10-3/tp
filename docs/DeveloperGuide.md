@@ -275,8 +275,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Tutor             | export student's contact details to my phone's contact list                                                         | I can contact them without using TuitionBook                                 |
 |----------|-------------------| ------------------------------------------------------------------------------------------------------------------- |------------------------------------------------------------------------------|
 
-*{More to be added}*
-
 ### Use cases
 
 **Use case: UC01 - View all contacts**
@@ -571,7 +569,7 @@ testers are expected to do more *exploratory* testing.
 3. Modify the current implementation of loading a corrupted data file. Currently, if a modified data file is invalid/corrupted, TuitionBook will start without any data but will not update the data file until a command initiating a save feature is called (mentioned in the DG). The new implementation would instead clear the file after an invalid/corrupted data file has been detected.
 
 
-4. Update email regex check to ensure it follows the specified rules. The current check does not allow emails such as `example+_.-example@gmail.com` (Violates rule i) and `example@ab.c-d.com` (Violates rule ii). These emails are expected to be accepted. Emails should be of the format `local-part@domain` and adhere to the following constraints:
+4. Update email regex check to ensure it follows the specified rules. The current check does not allow emails such as `example+_.-example@gmail.com` (Violates rule 1) and `example@ab.c-d.com` (Violates rule 2). These emails are expected to be accepted. Emails should be of the format `local-part@domain` and adhere to the following constraints:
 
    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, `(+_.-)`. The local-part may not start or end with any special characters.
 
