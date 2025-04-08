@@ -265,6 +265,8 @@ Furthermore, certain edits can cause the TuitionBook to behave in unexpected way
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 Action | Format, Examples
